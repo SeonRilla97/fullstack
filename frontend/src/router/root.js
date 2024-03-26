@@ -1,12 +1,15 @@
 // 필요한 순간까지 컴포넌트를 메모리상으로 올리지 않는다.
 import { Suspense, lazy } from "react";
+import todoRouter from "./todoRouter";
 // 기본 라우팅 설정
 const { createBrowserRouter } = require("react-router-dom");
 
+// lazy : Router에서 미리 렌더링 하는게 아닌 해당 페이지가 필요할 때 렌더링을 수행한다. -> Suspense와 친구
 const Loading = <div>Loading...</div>;
 const Main = lazy(() => import("../pages/MainPage"));
 const About = lazy(() => import("../pages/AboutPage"));
 const TodoIndex = lazy(() => import("../pages/todo/IndexPage"));
+
 const root = createBrowserRouter([
   {
     path: "/",
@@ -31,6 +34,7 @@ const root = createBrowserRouter([
         <TodoIndex />
       </Suspense>
     ),
+    children: todoRouter(),
   },
   ,
 ]);

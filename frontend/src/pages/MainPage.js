@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import BasicLayout from "../layout/BasicLayout";
 
-const AboutPage = () => {
+const MainPage = () => {
   return (
     <BasicLayout>
-      <div className="text-3xl">About Page</div>;
+      <div className="text-3xl">Main Page</div>
     </BasicLayout>
   );
 };
-export default AboutPage;
+
+export default MainPage;
