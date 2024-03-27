@@ -71,7 +71,7 @@ class TodoServiceImplTest {
     @Test
     public void testList() {
         PageRequestDTO pageRequestDTO = PageRequestDTO.builder()
-                .page(2)
+                .page(12)
                 .size(10)
                 .build();
         PageResponseDTO<TodoDTO> response = todoService.list(pageRequestDTO);

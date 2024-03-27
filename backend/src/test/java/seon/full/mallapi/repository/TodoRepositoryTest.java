@@ -32,9 +32,9 @@ class TodoRepositoryTest {
         for (int i = 0; i < 100; i++) {
 
             Todo todo = Todo.builder()
-                    .title("title..." + i)
+                    .title("title..." + i+100)
                     .dueDate(LocalDate.of(2023, 12, 31))
-                    .writer("user" + i)
+                    .writer("user" + i+100)
                     .build();
             todoRepository.save(todo);
         }
