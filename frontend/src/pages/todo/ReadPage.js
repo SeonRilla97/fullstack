@@ -5,6 +5,7 @@ import {
   useParams,
   useSearchParams,
 } from "react-router-dom";
+import ReadComponent from "../../component/todo/ReadComponent";
 
 const ReadPage = () => {
   const { tno } = useParams();
@@ -31,21 +32,23 @@ const ReadPage = () => {
   const moveToList = useCallback(() => {
     navigate(
       {
-        pathname: `/todo/list/`, //동적 페이지 이동 -> 값에 따른 변화
+        pathname: `/todo/list`, //동적 페이지 이동 -> 값에 따른 변화
         search: queryStr, // Query String 유지
       },
       [page, size]
     );
   });
   return (
-    <div className="text-3xl font-extrabold">
-      Todo Read Page Component {tno}
-      <div>
+    <div className="font-extrabold w-full bg-white mt-6">
+      <div className="text-2xl">Todo Read Page Component {tno}</div>
+
+      <ReadComponent tno={tno}></ReadComponent>
+      {/* <div>
         <button onClick={() => moveToModify(33)}>Test Modify</button>
         <button className="px-4" onClick={() => moveToList()}>
           Test List
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };

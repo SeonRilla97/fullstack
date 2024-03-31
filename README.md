@@ -17,6 +17,9 @@
 
 ### React
 
+= Page : 라우팅 경로
+= Component : 실제 작업 처리
+
 | Router
 
 URL을 지정해준다.
@@ -28,7 +31,19 @@ URL을 지정해준다.
     - Link, Navigate [정적 이동] useNavigate[동적 이동]
 - 쿼리스트링의 상태를 다른페이지로 갔다가 빠져나올때도 동일하게 유지
 
+URL로, 정보를 보내는 이유
+-> 사용자들이 링크를 이용하여 동일한 페이지를 보도록 하기 위함
+===
+
+| Axios
+
+- use Effect
+  [ 컴포넌트 실행 중. 한번만 실행 / 컴포넌트 상태 중 특정 상태 변경 시 비동기 처리]
+
 ### Spring
 
 - JPA
 - pageable & pageRequest 객체를 통한 페이징 처리
+- Object Mapping (DTO - Entity 간 변환)
+- RestControllerAdvice (Custom 예외처리)
+- Data Formatter, CORS
