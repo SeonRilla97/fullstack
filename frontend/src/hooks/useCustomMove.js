@@ -1,5 +1,6 @@
 // Custom Hook의 파일명은 use로 시작해야한다.
 
+import { useState } from "react";
 import {
   createSearchParams,
   useNavigate,
@@ -18,6 +19,7 @@ const useCustomMove = () => {
   //Page 이동 시 사용
   const navigate = useNavigate();
 
+  const [refresh, setRefresh] = useState(false);
   // useLocation : 현재 URL
   // useSearchParams : QueryString -> {Query Param || Path Variable} 가져오기
   const [queryParams] = useSearchParams();
@@ -44,6 +46,9 @@ const useCustomMove = () => {
       queryStr = queryDefault;
     }
 
+    // 페이지 리스트의 현재 페이지를 눌렀을 때 서버로부터 다시 데이터를 불러오도록
+    setRefresh(!refresh);
+
     navigate({ pathname: `../list`, search: queryStr });
   };
 
@@ -56,7 +61,16 @@ const useCustomMove = () => {
     });
   };
 
-  return { moveToList, moveToModify, page, size };
+  const moveToRead = (num) => {
+    console.log(queryDefault);
+
+    navigate({
+      pathname: `../read/${num}`,
+      search: queryDefault, // 수정 시 Query String 유지 위함
+    });
+  };
+
+  return { moveToList, moveToModify, moveToRead, page, size, refresh };
 };
 
 export default useCustomMove;
