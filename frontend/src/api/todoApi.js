@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const API_SERVER_HOST = "http://localhost:8080";
+export const API_SERVER_HOST = "http://172.30.1.90:8080";
 
 const prefix = `${API_SERVER_HOST}/api/todo`;
 
@@ -22,6 +22,18 @@ export const getList = async (pageParam) => {
 
 export const postAdd = async (todoObj) => {
   const res = await axios.post(`${prefix}/`, todoObj);
+
+  return res.data;
+};
+
+export const deleteOne = async (tno) => {
+  const res = await axios.delete(`${prefix}/${tno}`);
+
+  return res.data;
+};
+
+export const putOne = async (todo) => {
+  const res = await axios.put(`${prefix}/${todo.tno}`, todo);
 
   return res.data;
 };

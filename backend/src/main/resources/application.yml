@@ -11,7 +11,15 @@ spring:
         properties:
             hibernate:
                 format_sql: true
+    servlet:
+        multipart:
+            max-request-size: 30MB #한번에 전송 가능 데이터 크기
+            max-file-size: 10MB #파일의 최대 크기
 
+org:
+    zerock:
+        upload:
+            path: upload
 
 server:
     port: 8080
