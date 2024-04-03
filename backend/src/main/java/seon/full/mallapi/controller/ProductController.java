@@ -2,9 +2,9 @@ package seon.full.mallapi.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.core.io.Resource;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import seon.full.mallapi.dto.ProductDTO;
 import seon.full.mallapi.util.CustomFileUtil;
@@ -37,5 +37,10 @@ public class ProductController {
         log.info("Upload FIle Name : " + uploadFileNames);
 
         return Map.of("RESULT", "SUCCESS");
+    }
+
+    @GetMapping("/view/{filename}")
+    public ResponseEntity<Resource> viewFileGET(@PathVariable String filename){
+        return fileUtil.getFiles(filename);
     }
 }
