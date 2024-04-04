@@ -16,6 +16,7 @@ import seon.full.mallapi.dto.ProductDTO;
 import seon.full.mallapi.repository.ProductRepository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -31,7 +32,7 @@ public class ProductServiceImpl implements ProductService{
         log.info("product getList.....");
 
         Pageable pageable = PageRequest.of(
-                pageRequestDTO.getPage(),
+                pageRequestDTO.getPage() - 1,
                 pageRequestDTO.getSize(),
                 Sort.by("pno").descending()
         );
@@ -61,5 +62,96 @@ public class ProductServiceImpl implements ProductService{
                 .totalCount(totalCount)
                 .pageRequestDTO(pageRequestDTO)
                 .build();
+    }
+
+    /**
+     * 상품 등록
+     */
+    @Override
+    public Long register(ProductDTO productDTO) {
+        Product product = dtoToEntity(productDTO);
+
+        Product result = productRepository.save(product);
+
+        return result.getPno();
+    }
+
+    @Override
+    public ProductDTO get(Long pno) {
+        Optional<Product> result = productRepository.selectOne(pno);
+
+        Product product = result.orElseThrow();
+
+        ProductDTO productDTO = entityToDTO(product);
+
+        return productDTO;
+    }
+
+    @Override
+    public void modify(ProductDTO productDTO) {
+        Optional<Product> result = productRepository.findById(productDTO.getPno());
+
+        Product product = result.orElseThrow();
+
+        product.changePrice(productDTO.getPrice());
+        product.changePname(productDTO.getPname());
+        product.changedesc(productDTO.getPdesc());
+
+        product.clearList();
+
+        List<String> uploadFileNames = productDTO.getUploadFileNames();
+
+        if(uploadFileNames != null && uploadFileNames.size() > 0 ){
+            uploadFileNames.forEach(product::addImageString);
+        }
+
+        productRepository.save(product);
+    }
+
+    @Override
+    public void remove(Long pno) {
+        productRepository.updateToDelete(pno, true);
+    }
+
+    private ProductDTO entityToDTO(Product product){
+        ProductDTO productDTO = ProductDTO.builder()
+                .pdesc(product.getPdesc())
+                .price(product.getPrice())
+                .pname(product.getPname())
+                .pno(product.getPno())
+                .build();
+
+        List<ProductImage> imageList = product.getImageList();
+
+        if(imageList == null || imageList.size() == 0){
+            return productDTO;
+        }
+
+        List<String> fileNameList = imageList.stream().map(productImage ->
+                productImage.getFileName()).toList();
+
+        productDTO.setUploadFileNames(fileNameList);
+
+        return productDTO;
+    }
+
+    private Product dtoToEntity( ProductDTO productDTO){
+        Product product = Product.builder()
+                .pno(productDTO.getPno())
+                .pname(productDTO.getPname())
+                .pdesc(productDTO.getPdesc())
+                .price(productDTO.getPrice())
+                .build();
+
+        List<String> uploadFileNames = productDTO.getUploadFileNames();
+
+        if(uploadFileNames == null){
+        return product;
+        }
+
+        uploadFileNames.stream().forEach(uploadName -> {
+            product.addImageString(uploadName);
+        });
+        return product;
     }
 }
