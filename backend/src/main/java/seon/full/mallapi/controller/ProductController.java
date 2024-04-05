@@ -113,7 +113,7 @@ public class ProductController {
 
         return Map.of("RESULT", "SUCCESS");
 
-    }
+}
 
 }
 
