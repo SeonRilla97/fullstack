@@ -1,6 +1,7 @@
 // 필요한 순간까지 컴포넌트를 메모리상으로 올리지 않는다.
 import { Suspense, lazy } from "react";
 import todoRouter from "./todoRouter";
+import productRouter from "./productRouter";
 // 기본 라우팅 설정
 const { createBrowserRouter } = require("react-router-dom");
 
@@ -47,7 +48,7 @@ const root = createBrowserRouter([
         <ProductsIndex />
       </Suspense>
     ),
-    children: productsRouter(),
+    children: productRouter(),
   },
 ]);
 
