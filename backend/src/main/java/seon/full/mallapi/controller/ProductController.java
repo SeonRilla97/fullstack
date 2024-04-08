@@ -30,7 +30,7 @@ public class ProductController {
      * 상품 등록 / POST
      */
     @PostMapping("/")
-    public Map<String, Long> register(ProductDTO productDTO) throws IOException {
+    public Map<String, Long> register( ProductDTO productDTO) throws IOException {
         log.info("register: " + productDTO);
 
         List<MultipartFile> files = productDTO.getFiles();
