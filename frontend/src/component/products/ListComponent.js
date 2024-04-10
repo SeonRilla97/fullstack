@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import useCustomMove from "../../hooks/useCustomMove";
 import { getList } from "../../api/productApi";
 import FetchingModal from "../common/FetchingModal";
-import { API_SERVER_HOST } from "./todoApi";
+import { API_SERVER_HOST } from "./../../api/todoApi";
 
 const host = `${API_SERVER_HOST}`;
 
@@ -41,7 +41,7 @@ const ListComponent = () => {
       <div className="flex flex-wrap mx-auto p-6">
         {serverData.dtoList.map((product) => (
           <div
-            key={product.tno}
+            key={product.pno}
             className="w-1/2 p-1 rounded shadow-md w-60"
             onClick={() => moveToRead(product.pno)}
           >
