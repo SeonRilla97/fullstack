@@ -30,10 +30,15 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+
     implementation 'org.modelmapper:modelmapper:3.2.0' // DTO - Entity 객체 매핑
 
     implementation group: 'net.coobird', name: 'thumbnailator', version: '0.4.20'
     // 이미지 썸네일 변환
+
+    //Json 문자열 생성
+    implementation 'com.google.code.gson:gson:2.10.1'
 
 
     testCompileOnly 'org.projectlombok:lombok'

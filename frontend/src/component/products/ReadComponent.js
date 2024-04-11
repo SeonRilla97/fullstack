@@ -85,14 +85,14 @@ const ReadComponent = ({ pno }) => {
         <button
           type="button"
           className="inline-block rounded p-4 m-2 text-xl w-32 text-white bg-red-500"
-          onClick={() => moveToModify(pno)}
+          onClick={() => moveToModify(pno)} //함수 실행 시 매개변수가 넘어가야 할 때 람다를 이용
         >
           Modify
         </button>
         <button
           type="button"
-          className="inline-block rounded p-4 m-2 text-xl w-32 text-white bg-red-500"
-          onClick={() => moveToList}
+          className="inline-block rounded p-4 m-2 text-xl w-32 text-white bg-blue-500"
+          onClick={moveToList} //함수의 참조를 넘김
         >
           List
         </button>
