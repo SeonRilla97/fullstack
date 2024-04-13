@@ -4,20 +4,26 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import seon.full.mallapi.security.filter.JWTCheckFilter;
+import seon.full.mallapi.security.handler.APILoginFailHandler;
+import seon.full.mallapi.security.handler.APILoginSuccessHandler;
 
 import java.util.Arrays;
 
 @Configuration
 @Slf4j
 @RequiredArgsConstructor
+@EnableMethodSecurity
 public class CustomSecurityConfig {
 
     @Bean
@@ -39,7 +45,11 @@ public class CustomSecurityConfig {
         // API 서버로 로그인 할 수 있도록 설정 변경 ( POST -> username , password 파라미터 필요 )
         http.formLogin(config -> {
             config.loginPage("/api/member/login");
+            config.successHandler(new APILoginSuccessHandler());
+            config.failureHandler(new APILoginFailHandler());
         });
+
+        http.addFilterBefore(new JWTCheckFilter(), UsernamePasswordAuthenticationFilter.class); //JWT 체크
 
         return http.build();
     }
@@ -52,7 +62,6 @@ public class CustomSecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-
 
         configuration.setAllowedOriginPatterns(Arrays.asList("*")); // 모든 Cross Origin 허용
         configuration.setAllowedMethods(Arrays.asList("HEAD","GET","POST","PUT","DELETE")); // Http Method 허용
