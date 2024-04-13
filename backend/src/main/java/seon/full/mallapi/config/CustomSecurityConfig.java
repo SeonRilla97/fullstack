@@ -17,6 +17,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import seon.full.mallapi.security.filter.JWTCheckFilter;
 import seon.full.mallapi.security.handler.APILoginFailHandler;
 import seon.full.mallapi.security.handler.APILoginSuccessHandler;
+import seon.full.mallapi.security.handler.CustomAccessDeniedHandler;
 
 import java.util.Arrays;
 
@@ -51,6 +52,12 @@ public class CustomSecurityConfig {
 
         http.addFilterBefore(new JWTCheckFilter(), UsernamePasswordAuthenticationFilter.class); //JWT 체크
 
+        //인가(권한) 에러처리
+        http.exceptionHandling(config -> {
+            config.accessDeniedHandler(new CustomAccessDeniedHandler());
+        });
+        
+        
         return http.build();
     }
 
