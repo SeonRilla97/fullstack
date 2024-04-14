@@ -2,6 +2,7 @@
 import { Suspense, lazy } from "react";
 import todoRouter from "./todoRouter";
 import productRouter from "./productRouter";
+import memberRouter from "./memberRouter";
 // 기본 라우팅 설정
 const { createBrowserRouter } = require("react-router-dom");
 
@@ -49,6 +50,10 @@ const root = createBrowserRouter([
       </Suspense>
     ),
     children: productRouter(),
+  },
+  {
+    path: "/member",
+    children: memberRouter(),
   },
 ]);
 

@@ -3,6 +3,7 @@ import useCustomMove from "../../hooks/useCustomMove";
 import { getList } from "../../api/productApi";
 import FetchingModal from "../common/FetchingModal";
 import { API_SERVER_HOST } from "./../../api/todoApi";
+import useCustomLogin from "../../hooks/useCustomLogin";
 
 const host = `${API_SERVER_HOST}`;
 
@@ -20,6 +21,7 @@ const initState = {
 };
 
 const ListComponent = () => {
+  const { exceptionHandle } = useCustomLogin();
   const { page, size, moveToList, refresh, moveToRead } = useCustomMove();
 
   const [serverData, setServerData] = useState({ ...initState });
@@ -29,11 +31,13 @@ const ListComponent = () => {
   useEffect(() => {
     setFetching(true);
 
-    getList({ page, size }).then((data) => {
-      console.log(data);
-      setServerData(data);
-      setFetching(false);
-    });
+    getList({ page, size })
+      .then((data) => {
+        console.log(data);
+        setServerData(data);
+        setFetching(false);
+      })
+      .catch((err) => exceptionHandle(err));
   }, [page, size, refresh]);
   return (
     <div className="border-2 border-blue-100 mt-10 mr-2 ml-2">
