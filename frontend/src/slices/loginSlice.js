@@ -28,10 +28,13 @@ const loginSlice = createSlice({
       //Reducer의 구조가 필요할듯 -> action엔 payload에서 data를 보관중임
       console.log("login......");
 
-      // {email , pw}
-      const data = action.payload;
+      // {email , pw} 소셜 로그인 회원이 사용
+      const payload = action.payload;
 
-      return { email: data.email };
+      console.log(`payload : ${payload}`);
+      setCookie("member", JSON.stringify(payload), 1); // 1일
+      // return { email: data.email };
+      return payload;
     },
     logout: (state, action) => {
       console.log("logout......");

@@ -10,7 +10,7 @@ import seon.full.mallapi.domain.MemberRole;
 
 import java.util.*;
 import java.util.stream.Collectors;
-
+//Security와 연관있는 MemberDTO
 @Getter
 @Setter
 @ToString

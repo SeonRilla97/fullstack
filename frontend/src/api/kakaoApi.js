@@ -1,4 +1,5 @@
 import axios from "axios";
+import { API_SERVER_HOST } from "./todoApi";
 
 //api Key
 const rest_api_key = `e4d88587f3807d4521e376e2b33e4ac6`;
@@ -35,4 +36,11 @@ export const getAccessToken = async (authCode) => {
   const accessToken = res.data.access_token;
 
   return accessToken;
+};
+
+export const getMemberWithAccessToken = async (accessToken) => {
+  const res = await axios.get(
+    `${API_SERVER_HOST}/api/member/kakao?accessToken=${accessToken}`
+  );
+  return res.data;
 };
