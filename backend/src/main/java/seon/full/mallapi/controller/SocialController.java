@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import seon.full.mallapi.Service.MemberService;
+import seon.full.mallapi.service.MemberService;
 import seon.full.mallapi.dto.MemberDTO;
 import seon.full.mallapi.dto.MemberModifyDTO;
 import seon.full.mallapi.util.JWTUtil;

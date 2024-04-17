@@ -3,7 +3,7 @@ package seon.full.mallapi.controller;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
-import seon.full.mallapi.Service.TodoService;
+import seon.full.mallapi.service.TodoService;
 import seon.full.mallapi.dto.PageRequestDTO;
 import seon.full.mallapi.dto.PageResponseDTO;
 import seon.full.mallapi.dto.TodoDTO;

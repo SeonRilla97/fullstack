@@ -1,4 +1,4 @@
-package seon.full.mallapi.Service;
+package seon.full.mallapi.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -9,8 +9,6 @@ import seon.full.mallapi.dto.PageResponseDTO;
 import seon.full.mallapi.dto.TodoDTO;
 
 import java.time.LocalDate;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Slf4j

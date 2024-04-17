@@ -1,19 +1,15 @@
-package seon.full.mallapi.Service;
+package seon.full.mallapi.service;
 
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.PageRequest;
-import seon.full.mallapi.domain.Product;
 import seon.full.mallapi.dto.PageRequestDTO;
 import seon.full.mallapi.dto.PageResponseDTO;
 import seon.full.mallapi.dto.ProductDTO;
 
 import java.util.List;
 import java.util.UUID;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Log4j2

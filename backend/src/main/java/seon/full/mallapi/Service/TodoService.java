@@ -1,4 +1,4 @@
-package seon.full.mallapi.Service;
+package seon.full.mallapi.service;
 
 import seon.full.mallapi.dto.PageRequestDTO;
 import seon.full.mallapi.dto.PageResponseDTO;

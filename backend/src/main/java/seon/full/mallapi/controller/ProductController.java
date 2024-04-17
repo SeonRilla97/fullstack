@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import seon.full.mallapi.Service.ProductService;
+import seon.full.mallapi.service.ProductService;
 import seon.full.mallapi.dto.PageRequestDTO;
 import seon.full.mallapi.dto.PageResponseDTO;
 import seon.full.mallapi.dto.ProductDTO;

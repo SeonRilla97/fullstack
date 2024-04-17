@@ -1,6 +1,5 @@
-package seon.full.mallapi.Service;
+package seon.full.mallapi.service;
 
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import seon.full.mallapi.dto.PageRequestDTO;
 import seon.full.mallapi.dto.PageResponseDTO;
