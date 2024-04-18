@@ -1,5 +1,6 @@
 import { API_SERVER_HOST } from "./todoApi";
 import jwtAxios from "../util/jwtUtil";
+import axios from "axios";
 
 const host = `${API_SERVER_HOST}/api/products`;
 
@@ -29,7 +30,9 @@ export const getOne = async (tno) => {
 
 export const putOne = async (pno, product) => {
   const header = { headers: { "Content-Type": "multipart/form-data" } };
-
+  console.log("이거 들어와요??");
+  console.log(pno);
+  console.log("요기 사이에 pno 있어야해!");
   const res = await jwtAxios.put(`${host}/${pno}`, product, header);
   return res.data;
 };

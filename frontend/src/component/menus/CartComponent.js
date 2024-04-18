@@ -1,8 +1,5 @@
-import { useDispatch, useSelector } from "react-redux";
 import useCustomLogin from "../../hooks/useCustomLogin";
-import { getCartItemsAsync } from "../../slices/cartSlice";
 import { useEffect, useMemo } from "react";
-import cartSlice from "./../../slices/cartSlice";
 import useCustomCart from "../../hooks/useCustomCart";
 import CartItemComponent from "../cart/CartItemComponent";
 
