@@ -1,9 +1,11 @@
-import { useSelector } from "react-redux";
+import useCustomLogin from "../../hooks/useCustomLogin";
 const { Link } = require("react-router-dom");
 
 const BasicMenu = () => {
-  // loginslice로 부터 상태 가져오기
-  const loginState = useSelector((state) => state.loginSlice);
+  // loginslice로 부터 상태 가져오기[Redux]
+  // const loginState = useSelector((state) => state.loginSlice);
+  // loginslice로 부터 상태 가져오기[Recoil]
+  const { loginState } = useCustomLogin();
   return (
     <nav id="navbar" className="flex bg-blue-300">
       <div className="w-4/5 bg-gray-500">

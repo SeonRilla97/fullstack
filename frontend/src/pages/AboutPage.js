@@ -1,6 +1,5 @@
-import { Link } from "react-router-dom";
-import BasicLayout from "../layout/BasicLayout";
 import useCustomLogin from "../hooks/useCustomLogin";
+import BasicLayout from "../layout/BasicLayout";
 
 const AboutPage = () => {
   const { isLogin, moveToLoginReturn } = useCustomLogin();

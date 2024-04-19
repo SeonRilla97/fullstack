@@ -1,5 +1,4 @@
 import AddComponent from "../../component/products/AddComponent";
-import productRouter from "./../../router/productRouter";
 
 const AddPage = () => {
   return (

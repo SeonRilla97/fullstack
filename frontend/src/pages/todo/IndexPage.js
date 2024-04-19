@@ -1,6 +1,6 @@
+import { useCallback } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import BasicLayout from "../../layout/BasicLayout";
-import { useCallback } from "react";
 
 const IndexPage = ({ children }) => {
   const navigate = useNavigate();

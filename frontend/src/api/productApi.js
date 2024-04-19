@@ -1,6 +1,5 @@
-import { API_SERVER_HOST } from "./todoApi";
 import jwtAxios from "../util/jwtUtil";
-import axios from "axios";
+import { API_SERVER_HOST } from "./todoApi";
 
 const host = `${API_SERVER_HOST}/api/products`;
 

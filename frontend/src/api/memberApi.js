@@ -1,6 +1,6 @@
+import Axios from "axios";
 import jwtAxios from "../util/jwtUtil";
 import { API_SERVER_HOST } from "./todoApi";
-import Axios from "axios";
 
 const host = `${API_SERVER_HOST}/api/member`;
 

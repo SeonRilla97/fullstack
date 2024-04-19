@@ -1,10 +1,7 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import loginSlice from "./../../slices/loginSlice";
 import { modifyMember } from "../../api/memberApi";
 import useCustomLogin from "../../hooks/useCustomLogin";
 import ResultModal from "./../common/ResultModal";
-import { removeCookie } from "../../util/cookieUtil";
 
 const initState = {
   email: "",
@@ -15,9 +12,10 @@ const initState = {
 const ModifyComponent = () => {
   const [member, setMember] = useState(initState);
 
-  const loginInfo = useSelector((state) => state.loginSlice);
+  const { moveToLogin, loginState } = useCustomLogin();
 
-  const { moveToLogin, doLogout } = useCustomLogin();
+  const loginInfo = loginState;
+
   const [result, setResult] = useState();
   useEffect(() => {
     setMember({ ...loginInfo, pw: "ABCD" });
@@ -37,7 +35,6 @@ const ModifyComponent = () => {
 
   const closeModal = () => {
     setResult(null);
-    doLogout();
     moveToLogin();
   };
 

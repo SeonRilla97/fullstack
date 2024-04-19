@@ -1,10 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
 import App from "./App";
+import "./index.css";
 import reportWebVitals from "./reportWebVitals";
-import { Provider } from "react-redux";
-import store from "./store";
+// import { Provider } from "react-redux";
 import { RecoilRoot } from "recoil";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -19,11 +18,11 @@ root.render(
 
   //Recoil
   //Atoms : 데이터 , useRecoilState : useState 확장판
-  <Provider store={store}>
-    <RecoilRoot>
-      <App />
-    </RecoilRoot>
-  </Provider>
+  // <Provider store={store}>
+  <RecoilRoot>
+    <App />
+  </RecoilRoot>
+  // </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function

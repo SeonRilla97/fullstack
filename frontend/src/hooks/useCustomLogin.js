@@ -1,13 +1,16 @@
-import { useDispatch, useSelector } from "react-redux";
-import { loginPostAsync, logout } from "../slices/loginSlice";
 import { Navigate, createSearchParams, useNavigate } from "react-router-dom";
+import { useRecoilState, useResetRecoilState } from "recoil";
+import { loginPost } from "../api/memberApi";
+import { cartState } from "../atoms/cartState";
+import signinState from "../atoms/signinState";
+import { removeCookie, setCookie } from "../util/cookieUtil";
 
 const useCustomLogin = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
-  const loginState = useSelector((state) => state.loginSlice);
-
+  const [loginState, setLoginState] = useRecoilState(signinState);
+  const resetState = useResetRecoilState(signinState);
+  const resetCartState = useResetRecoilState(cartState);
   const isLogin = loginState.email ? true : false;
 
   const exceptionHandle = (ex) => {
@@ -33,14 +36,28 @@ const useCustomLogin = () => {
   };
 
   const doLogin = async (loginParam) => {
-    const action = await dispatch(loginPostAsync(loginParam));
+    // const action = await dispatch(loginPostAsync(loginParam));
+    const result = await loginPost(loginParam);
 
-    return action.payload;
+    console.log(result);
+
+    saveAsCookie(result);
+    return result;
+  };
+
+  const saveAsCookie = (data) => {
+    setCookie("member", JSON.stringify(data), 1); // 1일
+
+    setLoginState(data);
   };
 
   const doLogout = () => {
     //로그아웃
-    dispatch(logout());
+    // dispatch(logout());
+
+    removeCookie("member");
+    resetState();
+    resetCartState();
   };
 
   const moveToPath = (path) => {
@@ -65,6 +82,7 @@ const useCustomLogin = () => {
     moveToLogin,
     moveToLoginReturn,
     exceptionHandle,
+    saveAsCookie,
   };
 };
 

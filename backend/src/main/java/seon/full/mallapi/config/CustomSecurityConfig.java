@@ -71,8 +71,10 @@ public class CustomSecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
 
         configuration.setAllowedOriginPatterns(Arrays.asList("*")); // 모든 Cross Origin 허용
-        configuration.setAllowedMethods(Arrays.asList("HEAD","GET","POST","PUT","DELETE")); // Http Method 허용
-        configuration.setAllowedHeaders(Arrays.asList("Authorization","Cache-Control","Content-Type")); //
+        configuration.setAllowedMethods(Arrays.asList("HEAD","GET","POST","PUT","PATCH","DELETE","OPTIONS")); // Http Method 허용
+        configuration.setAllowedHeaders(Arrays.asList("Content-Type", "X-Auth-Token","Authorization","Access-Control-Allow-Origin","Access-Control-Allow-Credentials"));
+        configuration.setExposedHeaders(Arrays.asList("Content-Type", "X-Auth-Token","Authorization","Access-Control-Allow-Origin","Access-Control-Allow-Credentials"));
+
         configuration.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
